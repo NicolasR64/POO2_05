@@ -1,0 +1,12 @@
+be/iesca/tests/Test_BiereDao.java
+ be.iesca.tests.Test_BiereDao
+be/iesca/tests/Test_GestionUsers.java
+ be.iesca.tests.Test_GestionUsers
+be/iesca/tests/Test_Integration.java
+ be.iesca.tests.Test_Integration
+be/iesca/tests/Test_Parser.java
+ be.iesca.tests.Test_Parser
+be/iesca/tests/Test_GestionnaireUseCases.java
+ be.iesca.tests.Test_GestionnaireUseCases
+be/iesca/tests/Test_UserDao.java
+ be.iesca.tests.Test_UserDao

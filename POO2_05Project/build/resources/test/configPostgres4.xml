@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- il manque la balise user -->
+<persistance type="DB">
+	    <dao>be.iesca.daoimpl.BiereDaoImpl</dao>
+	    <url>jdbc:postgresql://localhost:5432/postgres</url>
+	    <password>1234</password>
+</persistance>

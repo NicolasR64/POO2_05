@@ -1,0 +1,33 @@
+
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+javafx {
+	version = '17'
+    modules = [ 'javafx.base','javafx.graphics','javafx.controls', 'javafx.fxml' ]
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// A partir de Java 9, jaxb (xml) ne fait plus partie du jdk.
+// Il faut ajouter les dépendances :
+	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+	implementation 'org.glassfish.jaxb:jaxb-runtime:2.4.0-b180830.0438'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    implementation 'com.google.guava:guava:30.1.1-jre'
+	implementation 'org.postgresql:postgresql:42.3.2'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'be.iesca.application.Main'
+}

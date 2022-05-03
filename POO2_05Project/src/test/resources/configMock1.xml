@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- config mock OK -->
+<persistance type="MOCK">
+	<dao>be.iesca.daoimpl.BiereDaoMockImpl</dao>
+</persistance>
+
+
+
