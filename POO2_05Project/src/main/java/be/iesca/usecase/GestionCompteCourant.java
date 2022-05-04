@@ -3,6 +3,6 @@ package be.iesca.usecase;
 import be.iesca.domaine.Bundle;
 
 public interface GestionCompteCourant {
-	void rechercherCompteCourant(Bundle bundle);
+	void modifierCompteCourant(Bundle bundle);
 	void lister(Bundle bundle);
 }

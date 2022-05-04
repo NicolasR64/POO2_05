@@ -58,17 +58,6 @@ public class GestionnaireUseCases implements GestionUsers, GestionCompteCourant 
 	}
 
 	@Override
-	public void rechercherCompteCourant(Bundle bundle) {
-		if (user == null) { // pas de user identifié
-			bundle.put(Bundle.MESSAGE,
-					"Opération impossible. Pas d'utilisateur connecté.");
-			bundle.put(Bundle.OPERATION_REUSSIE, false);
-		} else {
-			this.gestionCompteCourant.rechercherCompteCourant(bundle);
-		}
-	}
-
-	@Override
 	public void lister(Bundle bundle) {
 		if (user == null) { // pas de user identifié
 			bundle.put(Bundle.MESSAGE,
@@ -78,4 +67,16 @@ public class GestionnaireUseCases implements GestionUsers, GestionCompteCourant 
 			this.gestionCompteCourant.lister(bundle);
 		}
 	}
+	
+	@Override
+	public void modifierCompteCourant(Bundle bundle) {
+		if (user == null) { // pas de user identifié
+			bundle.put(Bundle.MESSAGE,
+					"Opération impossible. Pas d'utilisateur connecté.");
+			bundle.put(Bundle.OPERATION_REUSSIE, false);
+		} else {
+			this.gestionCompteCourant.modifierCompteCourant(bundle);
+		}
+	}
+
 }

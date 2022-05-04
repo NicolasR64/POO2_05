@@ -33,7 +33,7 @@ public class ControleurPrincipal implements Initializable {
 	@FXML
 	private TextField tfCloture, tfSolde, tfNumero, tfDecouvertMax, tfMessage;
 	@FXML
-	private Button cbVirement, cbRechercher, cbLister, cbConnecter;
+	private Button cbVirement, cbModifier, cbLister, cbConnecter;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +41,14 @@ public class ControleurPrincipal implements Initializable {
 		if (singleton == null)
 			singleton = this; // on mémorise afin d'y accéder par la suite
 	}
+	
+
+	public void modifier() {
+		garnirBundle();
+		this.gestionnaire.modifierCompteCourant(bundle);
+		majMessage();
+	}
+
 
 
 	public void trtBoutonConnecter() {
@@ -69,7 +77,7 @@ public class ControleurPrincipal implements Initializable {
 			tfDecouvertMax.setText("");
 			tfCloture.setText("");
 			this.cbLister.setDisable(true);
-			this.cbRechercher.setDisable(true);
+			this.cbModifier.setDisable(true);
 			this.majMessage();
 		}
 		
@@ -95,14 +103,6 @@ public class ControleurPrincipal implements Initializable {
 	private void majMessage() {
 		String message = (String) bundle.get(Bundle.MESSAGE);
 		this.tfMessage.setText(message);
-	}
-
-	public void rechercher() {
-		String nom = tfNumero.getText().trim();
-		this.bundle.put(Bundle.NOM, nom);
-		this.gestionnaire.rechercherCompteCourant(bundle);
-		majAffichageCompteCourant();
-		majMessage();
 	}
 
 	private void majAffichageCompteCourant() {
@@ -148,7 +148,7 @@ public class ControleurPrincipal implements Initializable {
 		this.cbConnecter.setText("Déconnecter");
 		this.cbVirement.setDisable(false);
 		this.cbLister.setDisable(false);
-		this.cbRechercher.setDisable(false);
+		this.cbModifier.setDisable(false);
 		this.majMessage();
 	}
 

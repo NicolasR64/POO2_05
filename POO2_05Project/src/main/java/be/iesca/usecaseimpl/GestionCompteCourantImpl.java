@@ -17,55 +17,6 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 	}
 
 	@Override
-	public void rechercherBiere(Bundle bundle) {
-		boolean operationReussie = false;
-		String nom = (String) bundle.get(Bundle.NOM);
-		Biere biere = this.biereDao.getBiere(nom);
-		String message = "";
-		if (biere == null) {
-			message = "Biere inconnue";
-		} else {
-			operationReussie = true;
-		}
-		bundle.put(Bundle.NOM, nom);
-		bundle.put(Bundle.OPERATION_REUSSIE, operationReussie);
-		bundle.put(Bundle.BIERE, biere);
-		bundle.put(Bundle.MESSAGE, message);
-	}
-
-	@Override
-	public void ajouterBiere(Bundle bundle) {
-		boolean ajoutReussi = false;
-		String message = "";
-		Biere biere = (Biere) bundle.get(Bundle.BIERE);
-		if (biere.getNom() == null || biere.getNom().isEmpty()) {
-			message = "L'ajout n'a pas pu être réalisé. Il manque le nom de la bière";
-		} else if (biere.getBrasserie() == null
-				|| biere.getBrasserie().isEmpty()) {
-			message = "L'ajout n'a pas pu être réalisé. Il manque le nom de la brasserie";
-		} else if (biere.getCouleur() == null || biere.getCouleur().isEmpty()) {
-			message = "L'ajout n'a pas pu être réalisé. Il manque la couleur";
-		} else if (biere.getType() == null || biere.getType().isEmpty()) {
-			message = "L'ajout n'a pas pu être réalisé. Il manque le type";
-		} else {
-			Biere biereDB = this.biereDao.getBiere(biere.getNom());
-			if (biereDB != null) {
-				message = "Cette biere existe déjà. Impossible de l'ajouter";
-			} else {
-				ajoutReussi = this.biereDao.ajouterBiere(biere);
-				if (ajoutReussi) {
-					message = "Ajout réalisé avec succès";
-				} else {
-					message = "L'ajout n'a pas pu être réalisé";
-				}
-			}
-		}
-		bundle.put(Bundle.OPERATION_REUSSIE, ajoutReussi);
-		bundle.put(Bundle.BIERE, biere);
-		bundle.put(Bundle.MESSAGE, message);
-	}
-
-	@Override
 	public void lister(Bundle bundle) {
 		boolean listeOk = true;
 		String message = "";
@@ -82,20 +33,6 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		bundle.put(Bundle.OPERATION_REUSSIE, listeOk);
 		bundle.put(Bundle.MESSAGE, message);
 		bundle.put(Bundle.LISTE, listeBieres);
-	}
-
-	@Override
-	public void supprimerBiere(Bundle bundle) {
-		String nom = (String) bundle.get(Bundle.NOM);
-		String message = "";
-		boolean suppressionReussie = false;
-		suppressionReussie = this.biereDao.supprimerBiere(nom);
-		if (suppressionReussie)
-			message = "Suppresion réalisée avec succès";
-		else
-			message = "Echec suppression";
-		bundle.put(Bundle.OPERATION_REUSSIE, suppressionReussie);
-		bundle.put(Bundle.MESSAGE, message);
 	}
 
 	@Override
