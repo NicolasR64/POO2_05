@@ -18,20 +18,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import be.iesca.domaine.Biere;
 import be.iesca.domaine.Bundle;
-import be.iesca.usecase.GestionBieres;
-import be.iesca.usecaseimpl.GestionBieresImpl;
+import be.iesca.usecase.GestionCompteCourant;
+import be.iesca.usecaseimpl.GestionCompteCourantImpl;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class Test_Integration {
 
 	private static List<Biere> bieres;
-	private static GestionBieres gestionBieres;
+	private static GestionCompteCourant gestionBieres;
 	private static Bundle bundle;
 
 	@BeforeAll
 	// sera exécuté une fois avant toutes les méthodes
 	static void initialisation() {
-		gestionBieres = new GestionBieresImpl();
+		gestionBieres = new GestionCompteCourantImpl();
 		bundle = new Bundle();
 		bieres = new ArrayList<Biere>(6);
 		// ajout des bières (liste déjà triée)

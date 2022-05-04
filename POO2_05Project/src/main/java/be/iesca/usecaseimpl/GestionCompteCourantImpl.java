@@ -6,12 +6,13 @@ import be.iesca.dao.BiereDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.Biere;
-import be.iesca.usecase.GestionBieres;
+import be.iesca.usecase.GestionCompteCourant;
 
-public class GestionBieresImpl implements GestionBieres {
+//TO DO
+public class GestionCompteCourantImpl implements GestionCompteCourant {
 	private BiereDao biereDao;
 
-	public GestionBieresImpl() {
+	public GestionCompteCourantImpl() {
 		this.biereDao = (BiereDao) DaoFactory.getInstance().getDaoImpl(BiereDao.class);
 	}
 
