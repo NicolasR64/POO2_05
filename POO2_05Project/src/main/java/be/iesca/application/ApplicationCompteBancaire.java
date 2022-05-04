@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class ApplicationEbar extends Application {
+public class ApplicationCompteBancaire extends Application {
 		
 		@Override
 		public void start(Stage primaryStage) {
@@ -17,6 +17,8 @@ public class ApplicationEbar extends Application {
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				primaryStage.setScene(scene);
 				primaryStage.setTitle("eBar");
+				//TO DO
+				//Changer image
 				primaryStage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
 				primaryStage.setResizable(false);
 				primaryStage.show();

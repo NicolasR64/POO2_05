@@ -17,6 +17,7 @@ import be.iesca.dao.Dao;
  * pas utilisés.
  * Le parser assignera aux attributs les valeurs extraites du fichier XML.
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "persistance")
 public class Persistance {

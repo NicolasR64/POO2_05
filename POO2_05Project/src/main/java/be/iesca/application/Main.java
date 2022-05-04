@@ -6,7 +6,7 @@ public class Main  {
 	// Si c'est le cas le java launcher va planter (bug en jdk 11)
 	
 	public static void main(String[] args) {
-		ApplicationEbar.lancer(args);
+		ApplicationCompteBancaire.lancer(args);
 	}
 	
 }
