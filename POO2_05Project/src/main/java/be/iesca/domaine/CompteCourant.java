@@ -66,7 +66,7 @@ public class CompteCourant implements CompteEnBanque {
 		this.solde += montant;
 	}
 
-	public void effectuerVirement(Client emetteur, CompteEnBanque destination,
+	public void effectuerVirement(User emetteur, CompteEnBanque destination,
 			double montant) throws Exception {
 		if(!emetteur.getCompteCourant().equals(this)) throw new Exception("Titulaire errone");
 		if(destination.isCloture()) throw new Exception("Compte beneficiaire cloture");
