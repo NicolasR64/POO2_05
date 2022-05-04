@@ -4,13 +4,16 @@ public class User {
 	private String email; // identifiant unique
 	private String nom;
 	private String password;
+	private CompteEnBanque compteCourant;
 	
 	public User() {
 		super();
 		this.email = "";
-		this.nom="";
+		this.nom = "";
 		this.password = "";
 	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -43,4 +46,26 @@ public class User {
 		return password;
 	}
 
+	public CompteEnBanque getCompteCourant() {
+		return compteCourant;
+	}
+
+	public void setCompteCourant(CompteEnBanque compteCourant) {
+		this.compteCourant = compteCourant;
+	}
+
+	public boolean equals(Object autre){
+		if(!(autre instanceof User)) return false;
+		User autreClient = (User) autre;
+		if(!autreClient.getNom().equals(this.getNom())) return false;		
+		if(!autreClient.getEmail().equals(this.getEmail())) return false;		
+		if(!autreClient.getPassword().equals(this.getPassword())) return false;	
+		return true;
+	}
 }
+
+
+
+	
+}
+
