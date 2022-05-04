@@ -1,6 +1,6 @@
 package be.iesca.domaine;
 /*
- *  Une instance de cette classe contiendra des données : une bière, liste de bières, message, ...
+ *  Une instance de cette classe contiendra des données : un compteCourant, liste de compteCourant, message, ...
  *  Elle facilite le transfert de ces données de la couche de présentation ou du programme de tests
  *  vers la couche business et vice-versa
  */
@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Bundle {
 	public static final String MESSAGE = "message";
-	public static final String BIERE = "biere";
+	public static final String COMPTECOURANT = "compteCourant";
 	public static final String USER = "user";
 	public static final String OPERATION_REUSSIE = "operationReussie";
 	public static final String LISTE = "liste";
