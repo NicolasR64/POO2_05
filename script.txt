@@ -1,0 +1,82 @@
+-- Database: postgres
+
+-- DROP DATABASE IF EXISTS postgres;
+
+CREATE DATABASE postgres
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'French_Belgium.1252'
+    LC_CTYPE = 'French_Belgium.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+COMMENT ON DATABASE postgres
+    IS 'default administrative connection database';
+
+-- Table: public.comptes
+
+-- DROP TABLE IF EXISTS public.comptes;
+
+CREATE TABLE IF NOT EXISTS public.comptes
+(
+    id integer NOT NULL DEFAULT nextval('comptes_id_seq'::regclass),
+    solde double precision,
+    "isCloture" boolean,
+    decouvert double precision,
+    numero character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT comptes_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.comptes
+    OWNER to postgres;
+
+-- Table: public.operations
+
+-- DROP TABLE IF EXISTS public.operations;
+
+CREATE TABLE IF NOT EXISTS public.operations
+(
+    id integer NOT NULL DEFAULT nextval('operations_id_seq'::regclass),
+    montant double precision,
+    solde double precision,
+    date date,
+    compte integer,
+    CONSTRAINT operations_pkey PRIMARY KEY (id),
+    CONSTRAINT "compteBancaire" FOREIGN KEY (compte)
+        REFERENCES public.comptes (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.operations
+    OWNER to postgres;
+
+-- Table: public.users
+
+-- DROP TABLE IF EXISTS public.users;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    name character varying(255) COLLATE pg_catalog."default",
+    email character varying(255) COLLATE pg_catalog."default",
+    password character varying(255) COLLATE pg_catalog."default",
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    compte integer,
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT "compteClient" FOREIGN KEY (compte)
+        REFERENCES public.comptes (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to postgres;
