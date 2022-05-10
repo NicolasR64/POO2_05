@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="349.0" prefWidth="556.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="be.iesca.controleurs.ControleurListe">
+<AnchorPane prefHeight="349.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.iesca.controleurs.ControleurListe">
 	<children>
       <TableView fx:id="tableView" onMouseClicked="#selection" prefHeight="349.0" prefWidth="556.0">
         <columns>
-          <TableColumn fx:id="colNom" prefWidth="185.0" text="Nom" />
-          <TableColumn fx:id="colType" prefWidth="83.0" text="Type" />
-            <TableColumn fx:id="colCouleur" minWidth="7.0" prefWidth="89.0" text="Couleur" />
-            <TableColumn fx:id="colBrasserie" minWidth="0.0" prefWidth="198.0" text="Brasserie" />
+          <TableColumn fx:id="colNumero" prefWidth="185.0" text="Numero" />
+          <TableColumn fx:id="colSolde" prefWidth="83.0" text="Solde" />
+            <TableColumn fx:id="colDecouvertMax" minWidth="7.0" prefWidth="89.0" text="Decouvert max" />
+            <TableColumn fx:id="colCloture" minWidth="0.0" prefWidth="198.0" text="Cloture" />
         </columns>
       </TableView>
 	</children>
