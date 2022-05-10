@@ -6,7 +6,7 @@ import be.iesca.domaine.CompteCourant;
 
 public interface CompteDao extends Dao {
 	
-	boolean modifierCompte(Compte compte);
-	List<Compte> listerCompte();
-	Compte getCompte(String numero);
+	boolean modifierCompte(CompteCourant compte);
+	List<CompteCourant> listerCompte();
+	CompteCourant getCompte(String numero);
 }
