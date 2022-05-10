@@ -63,4 +63,7 @@ public class User {
 		return true;
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop

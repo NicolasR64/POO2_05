@@ -3,6 +3,8 @@ package be.iesca.domaine;
 import java.util.Collection;
 import java.util.Iterator;
 
+
+//POURRA ETRE SUPPRIMER MAIS METTRE DANS TEST DABORD
 public class RegistreOperations implements Collection<Operation> {
 
 	private static final int TAILLE_INI_REGISTRE = 100;

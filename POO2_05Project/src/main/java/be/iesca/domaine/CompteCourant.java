@@ -40,6 +40,16 @@ public class CompteCourant implements CompteEnBanque {
 	public boolean isCloture() {
 		return cloture;
 	}
+	
+
+	public String getIsCloture() {
+		if(cloture) {
+			return "oui";
+		}else {
+			return "non";
+		}
+	}
+
 
 	public void setDecouvertMax(double decouvertMax) throws Exception {
 		if(isCloture()) throw new Exception("Compte cloture");
