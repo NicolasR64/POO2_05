@@ -21,7 +21,7 @@ public class ControleurListeOperation implements Initializable {
 	@FXML
 	private TableView<Operation> tableView;
 	@FXML
-	private TableColumn<Operation, String> colMontant, colNumero, colCompteEnBanque;
+	private TableColumn<Operation, String> colSolde, colNumero, colBeneficiaire;
 
 	private GestionnaireUseCases gestionnaire = GestionnaireUseCases.getInstance();
 	private ObservableList<Operation> tvObservableList = FXCollections.observableArrayList();
@@ -34,8 +34,8 @@ public class ControleurListeOperation implements Initializable {
 		List<Operation> listeOperation = (List<Operation>) bundle.get(Bundle.LISTE);
 		tvObservableList.addAll(listeOperation);
 		colNumero.setCellValueFactory(new PropertyValueFactory<Operation, String>("numero"));
-		colMontant.setCellValueFactory(new PropertyValueFactory<Operation, String>("solde"));
-		colCompteEnBanque.setCellValueFactory(new PropertyValueFactory<Operation, String>("Bénéficaire"));
+		colSolde.setCellValueFactory(new PropertyValueFactory<Operation, String>("solde"));
+		colBeneficiaire.setCellValueFactory(new PropertyValueFactory<Operation, String>("beneficiare"));
 		this.tableView.setItems(tvObservableList);
 	}
 

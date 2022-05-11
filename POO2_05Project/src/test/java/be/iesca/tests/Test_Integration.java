@@ -18,14 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import be.iesca.domaine.Biere;
 import be.iesca.domaine.Bundle;
-import be.iesca.usecase.GestionCompteCourant;
+import be.iesca.usecase.GestionOperation;
 import be.iesca.usecaseimpl.GestionCompteCourantImpl;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class Test_Integration {
 
 	private static List<Biere> bieres;
-	private static GestionCompteCourant gestionBieres;
+	private static GestionOperation gestionBieres;
 	private static Bundle bundle;
 
 	@BeforeAll

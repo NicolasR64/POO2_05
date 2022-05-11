@@ -1,6 +1,6 @@
 package be.iesca.domaine;
 /*
- *  Une instance de cette classe contiendra des données : un compteCourant, liste de compteCourant, message, ...
+ *  Une instance de cette classe contiendra des données : un compteCourant, message, ...
  *  Elle facilite le transfert de ces données de la couche de présentation ou du programme de tests
  *  vers la couche business et vice-versa
  */
