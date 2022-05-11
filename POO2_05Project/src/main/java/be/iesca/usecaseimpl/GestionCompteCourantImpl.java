@@ -1,15 +1,22 @@
 package be.iesca.usecaseimpl;
 
-import java.util.List;
-
-import be.iesca.dao.BiereDao;
-import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
-import be.iesca.domaine.CompteCourant;
 import be.iesca.usecase.GestionCompteCourant;
 
 //TO DO
 public class GestionCompteCourantImpl implements GestionCompteCourant {
+
+	@Override
+	public void modifierCompteCourant(Bundle bundle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lister(Bundle bundle) {
+		// TODO Auto-generated method stub
+		
+	}
 	/*private ComtpeCourantDAO compteCourantDao;
 
 	public GestionCompteCourantImpl() {
