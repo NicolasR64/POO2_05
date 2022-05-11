@@ -11,7 +11,7 @@
         <columns>
           <TableColumn fx:id="colNumero" minWidth="200.0" prefWidth="75.0" text="numero" />
           <TableColumn fx:id="colSolde" minWidth="200.0" prefWidth="75.0" text="solde" />
-            <TableColumn fx:id="colBeneficiaire" minWidth="200.0" prefWidth="75.0" text="beneficiaire" />
+           <TableColumn fx:id="colBeneficiaire" minWidth="200.0" prefWidth="75.0" text="beneficiaire" />
         </columns>
       </TableView>
    </children>

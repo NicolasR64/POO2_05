@@ -15,7 +15,7 @@ import be.iesca.controleurs.GestionnaireUseCases;
 import be.iesca.domaine.Biere;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.User;
-import be.iesca.usecase.GestionCompteCourant;
+import be.iesca.usecase.GestionOperation;
 import be.iesca.usecaseimpl.GestionCompteCourantImpl;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -42,7 +42,7 @@ public class Test_GestionnaireUseCases {
 
 	@SuppressWarnings("unchecked")
 	private static void viderLaTable() {
-		GestionCompteCourant gestionBieres = new GestionCompteCourantImpl();
+		GestionOperation gestionBieres = new GestionCompteCourantImpl();
 		gestionBieres.lister(bundle);
 		List<Biere> bieresObtenues = (List<Biere>) bundle.get(Bundle.LISTE);
 		for (Biere b : bieresObtenues) {

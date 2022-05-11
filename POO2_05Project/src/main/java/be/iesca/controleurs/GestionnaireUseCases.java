@@ -2,9 +2,9 @@ package be.iesca.controleurs;
 
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.User;
-import be.iesca.usecase.GestionCompteCourant;
+import be.iesca.usecase.GestionOperation;
 import be.iesca.usecase.GestionUsers;
-import be.iesca.usecaseimpl.GestionCompteCourantImpl;
+import be.iesca.usecaseimpl.GestionOperationImpl;
 import be.iesca.usecaseimpl.GestionUsersImpl;
 /**
  * Contrôleur de l'application (couche logique)
@@ -12,13 +12,13 @@ import be.iesca.usecaseimpl.GestionUsersImpl;
  * @author Olivier Legrand
  *
  */
-public class GestionnaireUseCases implements GestionUsers, GestionCompteCourant {
+public class GestionnaireUseCases implements GestionUsers, GestionOperation {
 
 	private static final GestionnaireUseCases INSTANCE = new GestionnaireUseCases();
 
 	private User user; // null si pas identifié par le système
 	private GestionUsers gestionUsers;
-	private GestionCompteCourant gestionCompteCourant;
+	private GestionOperation gestionOperation;
 
 	public static GestionnaireUseCases getInstance() {
 		return INSTANCE;
@@ -26,7 +26,7 @@ public class GestionnaireUseCases implements GestionUsers, GestionCompteCourant 
 
 	private GestionnaireUseCases() {
 		this.gestionUsers = new GestionUsersImpl();
-		this.gestionCompteCourant = new GestionCompteCourantImpl();
+		this.gestionOperation = new GestionOperationImpl();
 		this.user = null; // pas de user connecté
 	}
 
@@ -64,18 +64,7 @@ public class GestionnaireUseCases implements GestionUsers, GestionCompteCourant 
 					"Opération impossible. Pas d'utilisateur connecté.");
 			bundle.put(Bundle.OPERATION_REUSSIE, false);
 		} else {
-			this.gestionCompteCourant.lister(bundle);
-		}
-	}
-	
-	@Override
-	public void modifierCompteCourant(Bundle bundle) {
-		if (user == null) { // pas de user identifié
-			bundle.put(Bundle.MESSAGE,
-					"Opération impossible. Pas d'utilisateur connecté.");
-			bundle.put(Bundle.OPERATION_REUSSIE, false);
-		} else {
-			this.gestionCompteCourant.modifierCompteCourant(bundle);
+			this.gestionOperation.lister(bundle);
 		}
 	}
 
