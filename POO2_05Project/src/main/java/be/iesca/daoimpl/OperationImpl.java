@@ -6,16 +6,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.iesca.dao.CompteDao;
-import be.iesca.domaine.CompteCourant;
+import be.iesca.dao.OperationDao;
+import be.iesca.domaine.Operation;
 
-public class CompteDaoImpl implements CompteDao {
-	private static final String GET = "SELECT * FROM comptes c WHERE c.numero = ?";
-	private static final String MAJ = "UPDATE comptes SET solde= ?, decouvert= ?, isCloture= ? where numero= ?";
-	private static final String LISTER = "SELECT * FROM comptes c ORDER BY c.numero";
+public class OperationImpl implements OperationDao{
+	//To do
+	private static final String AJOUT = "INSERT INTO Operation (numeroCompteBancaireAutre, montant, type, solde) VALUES (?,?,?,?)\";";
+	private static final String LISTER = "SELECT * FROM Operation o ORDER BY o.numero";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
-	public CompteDaoImpl() {
+	public OperationImpl() {
 	}
 
 	private void cloturer(ResultSet rs, PreparedStatement ps, Connection con) {
@@ -37,50 +37,51 @@ public class CompteDaoImpl implements CompteDao {
 	}
 
 	@Override
-	public boolean modifierCompte(CompteCourant compte) {
-		boolean modificationReussie = false;
+	public boolean ajouterOperation(Operation operation) {
+		boolean ajoutReussi = false;
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = DaoFactory.getInstance().getConnexion();
-			ps = con.prepareStatement(MAJ);
-			String numero = compte.getNumero().trim();
-			ps.setString(4, numero); // <------------------- 4 ème paramètre !
-			ps.setDouble(1, compte.getSolde());
-			ps.setDouble(2, compte.getDecouvertMax());
-			ps.setBoolean(3, compte.isCloture());
+			ps = con.prepareStatement(AJOUT);
+			ps.setInt(1, operation.getType());
+			ps.setDouble(2, operation.getMontant());
+			ps.setString(3, operation.getAutreCompte().getNumero());
+			ps.setInt(4, operation.getNumero());
+			ps.setDouble(5, operation.getSolde());
 			int resultat = ps.executeUpdate();
 			if (resultat == 1) {
-				modificationReussie = true;
+				ajoutReussi = true;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			cloturer(null, ps, con);
 		}
-		return modificationReussie;
+		return ajoutReussi;
 	}
-
+	
 	@Override
-	public CompteCourant getCompte(String numero) {
-		CompteCourant compte = null;
+	public List<Operation> listerOperation() {
+		List<Operation> liste = new ArrayList<Operation>();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			con = DaoFactory.getInstance().getConnexion();
-			ps = con.prepareStatement(GET);
-			ps.setString(1, numero.trim());
+			ps = con.prepareStatement(LISTER);
 			rs = ps.executeQuery();
-			if (rs.next()) {
-				compte = new CompteCourant(numero, rs.getDouble(2), rs.getDouble(3));
+			while (rs.next()) {
+				Operation operation = new Operation( rs.getString(3), rs.getDouble(2), rs.getInt(4), rs.getDouble(5));
+				liste.add(operation);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			cloturer(rs, ps, con);
 		}
-		return compte;
+		return liste;
+
 	}
 
 }

@@ -7,9 +7,7 @@ public class CompteCourant implements CompteEnBanque {
 	
 	private double decouvertMax;
 	
-	private boolean cloture;
-
-	private RegistreOperations registreOperations;	
+	private boolean cloture;	
 
 	public CompteCourant(String numero, double decouvertMax) throws Exception {
 		this(numero,0,decouvertMax);
@@ -22,7 +20,6 @@ public class CompteCourant implements CompteEnBanque {
 		this.solde = solde;
 		this.decouvertMax = decouvertMax;
 		this.cloture = false;
-		this.registreOperations = new RegistreOperations();
 	}	
 	
 	public String getNumero() {
@@ -97,11 +94,6 @@ public class CompteCourant implements CompteEnBanque {
 		if(!(autre instanceof CompteCourant)) return false;
 		CompteCourant autreCompte = (CompteCourant) autre;
 		return autreCompte.getNumero().equals(this.numero);
-	}
-
-	@Override
-	public RegistreOperations getRegistreOperations() {
-		return this.registreOperations;
 	}
 
 }

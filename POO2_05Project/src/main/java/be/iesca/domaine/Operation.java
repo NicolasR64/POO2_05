@@ -14,25 +14,38 @@ public class Operation {
 	
 	// attributs
 	private GregorianCalendar date; // date de l'opération
-	private int type; // création, retrait, dépôt, virement ou clôture
 	private double montant; // montant de l'opération
 	private CompteEnBanque autreCompte; // utilisé pour les virements
 	private int numero; // numéro d'identification de l'opération
 	private double solde; // solde du compte après l'opération
+	private int type; //type d'opération effectué
+	private String numCompteEnBanque;
 	
 	// construction d'une opération, on ne connait pas encore son numéro (-1)
 	// il sera déterminé lors de l'ajout de l'opération à l'historique
 	public Operation( CompteEnBanque autreCompte, double montant, int type,
-			double solde ) {
-		this.autreCompte = autreCompte;
-		if ( type == Operation.RETRAIT || 
-				type == Operation.VIREMENT_DEBIT ) montant = -montant;
-		this.date = new GregorianCalendar();
-		this.montant = montant;
-		this.numero = -1;
-		this.type = type;
-		this.solde = solde;
-	}
+            double solde ) {
+        this.autreCompte = autreCompte;
+        if ( type == Operation.RETRAIT || 
+                type == Operation.VIREMENT_DEBIT ) montant = -montant;
+        this.date = new GregorianCalendar();
+        this.montant = montant;
+        this.numero = -1;
+        this.type = type;
+        this.solde = solde;
+        this.numCompteEnBanque = null;
+    }
+	
+	public Operation( String numeroCompteBancaireAutre, double montant, int type, double solde ) {
+        this.autreCompte = autreCompte;
+        if ( type == Operation.RETRAIT || type == Operation.VIREMENT_DEBIT ) montant = -montant;
+        this.date = new GregorianCalendar();
+        this.montant = montant;
+        this.numero = -1;
+        this.type = type;
+        this.solde = solde;
+        this.numCompteEnBanque = numeroCompteBancaireAutre;
+    }
 
 	// méthode qui renvoie les données principales de l'opération
 	// sous forme d'une chaîne de caractères
@@ -61,11 +74,11 @@ public class Operation {
 		}
 	}
 
-	public int getNuméro() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNuméro(int numéro) {
+	public void setNumero(int numéro) {
 		this.numero = numéro;
 	}
 
