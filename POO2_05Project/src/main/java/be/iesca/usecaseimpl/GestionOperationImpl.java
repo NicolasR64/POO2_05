@@ -2,7 +2,6 @@ package be.iesca.usecaseimpl;
 
 import java.util.List;
 
-import be.iesca.dao.BiereDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.CompteCourant;
