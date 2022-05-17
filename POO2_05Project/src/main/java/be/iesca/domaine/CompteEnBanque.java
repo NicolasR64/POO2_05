@@ -8,7 +8,6 @@ public interface CompteEnBanque {
 	String getNumero();
 	boolean isCloture();
 	boolean equals(Object autre);
-	RegistreOperations getRegistreOperations();
 	
 	/* des methodes qui agissent sur l'objet cible */
 	void cloturer() throws Exception;

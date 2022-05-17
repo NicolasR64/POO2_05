@@ -17,15 +17,24 @@ import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 import be.iesca.domaine.Bundle;
+<<<<<<< HEAD
+import be.iesca.usecase.GestionOperation;
+=======
 import be.iesca.domaine.CompteCourant;
 import be.iesca.usecase.GestionCompteCourant;
+>>>>>>> d76a856a3da1bc6bc2564c36635fbfb34318a964
 import be.iesca.usecaseimpl.GestionCompteCourantImpl;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class Test_Integration {
 
+<<<<<<< HEAD
+	private static List<Biere> bieres;
+	private static GestionOperation gestionBieres;
+=======
 	private static List<CompteCourant> comptes;
 	private static GestionCompteCourant gestionComptes;
+>>>>>>> d76a856a3da1bc6bc2564c36635fbfb34318a964
 	private static Bundle bundle;
 
 	@BeforeAll

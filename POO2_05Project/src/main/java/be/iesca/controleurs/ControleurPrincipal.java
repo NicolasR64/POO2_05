@@ -34,7 +34,7 @@ public class ControleurPrincipal implements Initializable {
 	@FXML
 	private TextField tfCloture, tfSolde, tfNumero, tfDecouvertMax, tfMessage;
 	@FXML
-	private Button cbVirement, cbModifier, cbLister, cbConnecter;
+	private Button cbVirement, cbLister, cbConnecter;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -42,15 +42,6 @@ public class ControleurPrincipal implements Initializable {
 		if (singleton == null)
 			singleton = this; // on mémorise afin d'y accéder par la suite
 	}
-	
-
-	public void modifier() {
-		garnirBundle();
-		this.gestionnaire.modifierCompteCourant(bundle);
-		majMessage();
-	}
-
-
 
 	public void trtBoutonConnecter() {
 		if(this.cbConnecter.getText().equals("Connecter")) {
@@ -78,27 +69,9 @@ public class ControleurPrincipal implements Initializable {
 			tfDecouvertMax.setText("");
 			tfCloture.setText("");
 			this.cbLister.setDisable(true);
-			this.cbModifier.setDisable(true);
 			this.majMessage();
 		}
 		
-	}
-
-	//trouver solution pour convertir string en double
-	private void garnirBundle() {
-		String numero = tfNumero.getText().trim();
-		String solde = tfSolde.getText().trim();
-		String decouvertMax = tfDecouvertMax.getText().trim();
-		String cloture = tfCloture.getText().trim();
-		try {
-			double soldeDouble = getMontant(solde);
-			double decouvertMaxDouble = getMontant(decouvertMax);
-			CompteCourant compteCourant= new CompteCourant(numero, soldeDouble, decouvertMaxDouble);
-			bundle.put(Bundle.COMPTECOURANT, compteCourant);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private void majMessage() {
@@ -106,25 +79,13 @@ public class ControleurPrincipal implements Initializable {
 		this.tfMessage.setText(message);
 	}
 
-	private void majAffichageCompteCourant() {
-		boolean reussite = (boolean) bundle.get(Bundle.OPERATION_REUSSIE);
-		if (reussite) {
-			CompteCourant CompteCourant = (CompteCourant) bundle.get(Bundle.COMPTECOURANT);
-			afficherCompteCourant(CompteCourant);
-		} else {
-			tfSolde.setText("");
-			tfDecouvertMax.setText("");
-			tfCloture.setText("");
-		}
-	}
-
 	public void lister() {
 		Parent root;
 		try {
 			tfMessage.setText("");
-			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListe.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListeOperation.fxml"));
 			Stage stage = new Stage();
-			stage.setTitle("Liste des comptes en banque");
+			stage.setTitle("Liste des op�ration");
 			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(new Scene(root));
@@ -149,7 +110,6 @@ public class ControleurPrincipal implements Initializable {
 		this.cbConnecter.setText("Déconnecter");
 		this.cbVirement.setDisable(false);
 		this.cbLister.setDisable(false);
-		this.cbModifier.setDisable(false);
 		this.majMessage();
 	}
 
