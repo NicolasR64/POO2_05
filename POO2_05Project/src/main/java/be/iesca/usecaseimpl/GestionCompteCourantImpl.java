@@ -1,7 +1,5 @@
 package be.iesca.usecaseimpl;
 
-import java.util.List;
-
 import be.iesca.dao.CompteDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
