@@ -60,34 +60,13 @@ public class Test_GestionnaireUseCases {
 
 	@Test
 	@Order(2)
-	public void testAjouterBiere() {
-		gestionnaire.ajouterBiere(bundle);
-		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(3)
-	public void testModifierBiere() {
-		gestionnaire.modifierBiere(bundle);
-		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(4)
-	public void testSupprimerBiere() {
-		gestionnaire.supprimerBiere(bundle);
-		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(5)
 	public void testListerBieres() {
 		gestionnaire.lister(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
 	@Test
-	@Order(6)
+	@Order(3)
 	public void testConnexion() {
 		this.user = new User();
 		this.user.setEmail(EMAIL_TOTO);
@@ -102,44 +81,16 @@ public class Test_GestionnaireUseCases {
 	}
 
 	@Test
-	@Order(7)
+	@Order(4)
 	public void testReconnexion() {
 		gestionnaire.connecterUser(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
-
+	
 	@Test
-	@Order(8)
-	public void testAjouterBiereUserConnecte() {
-		Biere biere = new Biere("Blanche De Bruxelles", "Blanche", "blanche", "Brasserie Lefèvre");
-		bundle.put(Bundle.BIERE, biere);
-		gestionnaire.ajouterBiere(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(9)
-	public void testModifierBiereUserConnecte() {
-		Biere biere = new Biere("Blanche De Bruxelles", "Blanche!", "blanche", "Brasserie Lefèvre");
-		bundle.put(Bundle.BIERE, biere);
-		gestionnaire.modifierBiere(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(10)
-	public void testListeBieresUserConnecte() {
+	@Order(5)
+	public void testListerOperationsUserConnecte() {
 		gestionnaire.lister(bundle);
 		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
-
-	@Test
-	@Order(11)
-	public void testSupprimerBiereUserConnecte() {
-		String nom = "Blanche De Bruxelles";
-		bundle.put(Bundle.NOM, nom);
-		gestionnaire.supprimerBiere(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
 }
