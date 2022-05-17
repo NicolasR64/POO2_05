@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- il manque la balise url-->
-<persistance type="DB">
-	    <dao>be.iesca.daoimpl.BiereDaoImpl</dao>
-	    <user>postgres</user>
-	    <password>1234</password>
-</persistance>

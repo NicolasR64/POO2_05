@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import be.iesca.controleurs.GestionnaireUseCases;
-import be.iesca.domaine.Biere;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.User;
 import be.iesca.usecase.GestionOperation;
@@ -31,24 +30,7 @@ public class Test_GestionnaireUseCases {
 	@BeforeAll
 	static void initialiser() {
 		bundle = new Bundle();
-		viderLaTable();
 		gestionnaire = GestionnaireUseCases.getInstance();
-	}
-
-	@AfterAll
-	static void terminer() {
-		viderLaTable();
-	}
-
-	@SuppressWarnings("unchecked")
-	private static void viderLaTable() {
-		GestionOperation gestionBieres = new GestionCompteCourantImpl();
-		gestionBieres.lister(bundle);
-		List<Biere> bieresObtenues = (List<Biere>) bundle.get(Bundle.LISTE);
-		for (Biere b : bieresObtenues) {
-			bundle.put(Bundle.NOM, b.getNom());
-			gestionBieres.supprimerBiere(bundle);
-		}
 	}
 
 	@Test
@@ -60,13 +42,20 @@ public class Test_GestionnaireUseCases {
 
 	@Test
 	@Order(2)
-	public void testListerBieres() {
-		gestionnaire.lister(bundle);
+	public void testModifierCompteCourant() {
+		gestionnaire.modifierCompteCourant(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
 	@Test
 	@Order(3)
+	public void testGetCompteCourant() {
+		gestionnaire.getCompteCourant(bundle);
+		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
+	}
+
+	@Test
+	@Order(4)
 	public void testConnexion() {
 		this.user = new User();
 		this.user.setEmail(EMAIL_TOTO);
@@ -81,16 +70,17 @@ public class Test_GestionnaireUseCases {
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testReconnexion() {
 		gestionnaire.connecterUser(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
-	
+
 	@Test
-	@Order(5)
-	public void testListerOperationsUserConnecte() {
-		gestionnaire.lister(bundle);
+	@Order(11)
+	public void testGetCompteCourantConnecte(String numero) {
+		gestionnaire.getCompte(bundle, numero);
 		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
+
 }
