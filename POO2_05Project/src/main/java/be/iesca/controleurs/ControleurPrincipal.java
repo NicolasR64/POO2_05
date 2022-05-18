@@ -71,7 +71,6 @@ public class ControleurPrincipal implements Initializable {
 			this.cbLister.setDisable(true);
 			this.majMessage();
 		}
-		
 	}
 
 	private void majMessage() {
