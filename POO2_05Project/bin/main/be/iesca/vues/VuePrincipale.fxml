@@ -27,7 +27,7 @@
          <children>
             <Button fx:id="cbLister" disable="true" mnemonicParsing="false" onAction="#lister" text="ListerOperation" />
             <Button fx:id="cbConnecter" mnemonicParsing="false" onAction="#trtBoutonConnecter" prefHeight="18.0" prefWidth="112.0" text="Connecter" />
-            <Button fx:id="cbVirement" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Virement" />
+            <Button fx:id="cbVirement" mnemonicParsing="false" onAction="#trtBoutonVirement" prefHeight="26.0" prefWidth="110.0" text="Virement" />
          </children>
          <padding>
             <Insets left="7.0" />
