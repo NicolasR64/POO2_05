@@ -50,10 +50,10 @@ public class ControleurPrincipal implements Initializable {
 				tfMessage.setText("");
 				root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueLogin.fxml"));
 				Stage stage = new Stage();
-				stage.setTitle("Effectuer Virement");
+				stage.setTitle("Se connecter");
 				//TO DO
 				//changer image
-				stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
+				stage.getIcons().add(new Image("/be/iesca/application/banque.jpg"));
 				stage.initModality(Modality.APPLICATION_MODAL);
 				stage.setScene(new Scene(root));
 				stage.setResizable(false);
@@ -69,6 +69,7 @@ public class ControleurPrincipal implements Initializable {
 			tfDecouvertMax.setText("");
 			tfCloture.setText("");
 			this.cbLister.setDisable(true);
+			this.cbVirement.setDisable(true);
 			this.majMessage();
 		}
 	}
@@ -85,7 +86,7 @@ public class ControleurPrincipal implements Initializable {
 			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListeOperation.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Liste des opération");
-			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
+			stage.getIcons().add(new Image("/be/iesca/application/banque.jpg"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(new Scene(root));
 			stage.setResizable(false);
@@ -102,7 +103,7 @@ public class ControleurPrincipal implements Initializable {
 			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueVirement.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Page de virements");
-			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
+			stage.getIcons().add(new Image("/be/iesca/application/banque.jpg"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(new Scene(root));
 			stage.setResizable(false);
@@ -123,9 +124,10 @@ public class ControleurPrincipal implements Initializable {
 	public void connexion(Bundle bundle) {
 		this.bundle.put(Bundle.MESSAGE, bundle.get(Bundle.MESSAGE));
 		this.bundle.put(Bundle.USER, bundle.get(Bundle.USER));
-		this.cbConnecter.setText("DÃ©connecter");
+		this.cbConnecter.setText("Deconnecter");
 		this.cbVirement.setDisable(false);
 		this.cbLister.setDisable(false);
+		this.cbVirement.setDisable(false);
 		this.majMessage();
 	}
 

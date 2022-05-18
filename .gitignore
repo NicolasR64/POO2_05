@@ -5,3 +5,5 @@ POO2_05Project/bin/main/be/iesca/controleurs/ControleurPrincipal.class
 
 POO2_05Project/bin/main/be/iesca/daoimpl/OperationDaoImpl.class
 POO2_05Project/bin/main/be/iesca/daoimpl/OperationImpl.class
+POO2_05Project/bin/main/be/iesca/application/ApplicationCompteBancaire.class
+POO2_05Project/bin/main/be/iesca/controleurs/ControleurLogin.class

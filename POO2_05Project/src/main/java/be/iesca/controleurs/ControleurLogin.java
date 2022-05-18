@@ -28,7 +28,7 @@ public class ControleurLogin implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tfEmail.setText("toto@gmail.com");
+		tfEmail.setText("nicolas@gmail.com");
 		tfPassword.setText("1234");
 	}
 

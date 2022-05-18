@@ -16,10 +16,10 @@ public class ApplicationCompteBancaire extends Application {
 				Scene scene = new Scene(root, 614, 310);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				primaryStage.setScene(scene);
-				primaryStage.setTitle("eBar");
+				primaryStage.setTitle("E-Banque");
 				//TO DO
 				//Changer image
-				primaryStage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
+				primaryStage.getIcons().add(new Image("/be/iesca/application/banque.jpg"));
 				primaryStage.setResizable(false);
 				primaryStage.show();
 			} catch (Exception e) {
