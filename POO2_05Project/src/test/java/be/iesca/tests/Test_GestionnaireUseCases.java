@@ -49,8 +49,8 @@ public class Test_GestionnaireUseCases {
 
 	@Test
 	@Order(3)
-	public void testGetCompteCourant() {
-		gestionnaire.getCompteCourant(bundle);
+	public void testGetCompteCourant(String numero) {
+		gestionnaire.getCompte(bundle, numero);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
@@ -77,7 +77,7 @@ public class Test_GestionnaireUseCases {
 	}
 
 	@Test
-	@Order(11)
+	@Order(6)
 	public void testGetCompteCourantConnecte(String numero) {
 		gestionnaire.getCompte(bundle, numero);
 		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));

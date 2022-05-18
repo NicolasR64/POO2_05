@@ -4,4 +4,5 @@ import be.iesca.domaine.Bundle;
 
 public interface GestionCompteCourant {
 	void getCompte(Bundle bundle, String numero);
+	void modifierCompteCourant(Bundle bundle);
 }

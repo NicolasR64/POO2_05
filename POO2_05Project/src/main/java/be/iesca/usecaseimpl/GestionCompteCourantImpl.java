@@ -1,7 +1,5 @@
 package be.iesca.usecaseimpl;
 
-import java.util.List;
-
 import be.iesca.dao.CompteDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
@@ -30,5 +28,33 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		bundle.put(Bundle.OPERATION_REUSSIE, CompteOk);
 		bundle.put(Bundle.MESSAGE, message);
 		bundle.put(Bundle.LISTE, compteDao);
+	}
+
+	@Override
+	public void modifierCompteCourant(Bundle bundle) {
+		boolean modificationReussie = false;
+		String message = "";
+		CompteCourant compte= (CompteCourant) bundle.get(Bundle.COMPTECOURANT);
+		
+		if(compte.getNumero() == null || compte.getNumero().isEmpty()) {
+			message = "Impossible d'effectuer une modification, le numero est manquant";
+		}else if(compte.getIsCloture() == null || compte.getIsCloture().isEmpty()) {
+			message = "Impossible d'effectuer une modification, la valeur de cloture est manquante";
+		}else{
+			CompteCourant compteDB = this.compteDao.getCompte(compte.getNumero());
+			if(compteDB == null) {
+				message = "La modification n'a pas pu etre realise, le compte n'existe pas";
+			}else {
+				modificationReussie = this.compteDao.modifierCompte(compte);
+				if(modificationReussie) {
+					message = "Modification du compte reussie";
+				}else {
+					message = "La modification n'a pas pu etre faite";
+				}
+			}
+		}
+		bundle.put(Bundle.OPERATION_REUSSIE, modificationReussie);
+		bundle.put(Bundle.MESSAGE, message);
+		
 	}
 }
