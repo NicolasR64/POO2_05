@@ -9,13 +9,13 @@ import java.util.List;
 import be.iesca.dao.OperationDao;
 import be.iesca.domaine.Operation;
 
-public class OperationImpl implements OperationDao{
+public class OperationDaoImpl implements OperationDao{
 	//To do
 	private static final String AJOUT = "INSERT INTO Operation (numeroCompteBancaireAutre, montant, type, solde) VALUES (?,?,?,?)\";";
 	private static final String LISTER = "SELECT * FROM Operation o ORDER BY o.numero";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
-	public OperationImpl() {
+	public OperationDaoImpl() {
 	}
 
 	private void cloturer(ResultSet rs, PreparedStatement ps, Connection con) {
