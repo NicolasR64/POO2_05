@@ -101,7 +101,7 @@ public class ControleurPrincipal implements Initializable {
 			tfMessage.setText("");
 			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueVirement.fxml"));
 			Stage stage = new Stage();
-			stage.setTitle("Liste des opération");
+			stage.setTitle("Page de virements");
 			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(new Scene(root));

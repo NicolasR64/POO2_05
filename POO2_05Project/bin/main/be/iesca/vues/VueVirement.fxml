@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.iesca.controleurs.ControleurVirement">
    <children>
       <AnchorPane layoutX="-15.0" prefHeight="233.0" prefWidth="362.0">
          <children>
@@ -31,7 +30,7 @@
                </children>
             </GridPane>
             <Button fx:id="boutonConfirmer" layoutX="206.0" layoutY="175.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="97.0" text="Confirmer" />
-            <Button fx:id="boutonRetour" layoutX="75.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" text="Retour" />
+            <Button fx:id="boutonRetour" layoutX="75.0" layoutY="175.0" mnemonicParsing="false" onAction="#trtBoutonRetour" prefHeight="30.0" prefWidth="79.0" text="Retour" />
          </children>
       </AnchorPane>
    </children>
