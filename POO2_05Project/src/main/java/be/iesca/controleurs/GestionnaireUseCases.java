@@ -2,6 +2,7 @@ package be.iesca.controleurs;
 
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.User;
+import be.iesca.usecase.GestionCompteCourant;
 import be.iesca.usecase.GestionOperation;
 import be.iesca.usecase.GestionUsers;
 import be.iesca.usecaseimpl.GestionOperationImpl;
@@ -12,13 +13,14 @@ import be.iesca.usecaseimpl.GestionUsersImpl;
  * @author Olivier Legrand
  *
  */
-public class GestionnaireUseCases implements GestionUsers, GestionOperation {
+public class GestionnaireUseCases implements GestionUsers, GestionOperation, GestionCompteCourant{
 
 	private static final GestionnaireUseCases INSTANCE = new GestionnaireUseCases();
 
 	private User user; // null si pas identifié par le système
 	private GestionUsers gestionUsers;
 	private GestionOperation gestionOperation;
+	private GestionCompteCourant gestionCompteCourant;
 
 	public static GestionnaireUseCases getInstance() {
 		return INSTANCE;
@@ -66,6 +68,27 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation {
 		} else {
 			this.gestionOperation.lister(bundle);
 		}
+	}
+	
+	@Override
+	public void getCompte(Bundle bundle, String numero) {
+		if (user == null) { // pas de user identifié
+			bundle.put(Bundle.MESSAGE,
+					"Opération impossible. Pas d'utilisateur connecté.");
+			bundle.put(Bundle.OPERATION_REUSSIE, false);
+		} else {
+			this.gestionCompteCourant.getCompte(bundle, numero);
+		}
+	}
+	
+	public void modifierCompteCourant(Bundle bundle) {
+		if(user == null) {
+			bundle.put(Bundle.MESSAGE, "Operation impossible. Pas d'utilisateur connecte.");
+			bundle.put(Bundle.OPERATION_REUSSIE, false);
+		}else {
+			this.gestionCompteCourant.modifierCompteCourant(bundle);
+		}
+		
 	}
 
 }

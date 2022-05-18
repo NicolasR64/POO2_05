@@ -19,7 +19,7 @@ public class Test_Parser {
 			persistance = ParserConfig
 					.lireConfiguration("src/test/resources/configMock1.xml");
 			assertEquals("MOCK", persistance.getType());
-			String toStringDao = persistance.getDaoImpl(BiereDao.class)
+			String toStringDao = persistance.getDaoImpl(OperationDao.class)
 					.toString();
 			assertTrue(toStringDao
 					.contains("be.iesca.daoimpl.BiereDaoMockImpl"));
@@ -78,7 +78,7 @@ public class Test_Parser {
 			persistance = ParserConfig
 					.lireConfiguration("src/test/resources/configPostgres1.xml");
 			assertEquals("DB", persistance.getType());
-			String toStringDao = persistance.getDaoImpl(BiereDao.class)
+			String toStringDao = persistance.getDaoImpl(OperationDao.class)
 					.toString();
 			assertTrue(toStringDao.contains("be.iesca.daoimpl.BiereDaoImpl"));
 			assertEquals("jdbc:postgresql://localhost:5432/postgres",
@@ -99,7 +99,7 @@ public class Test_Parser {
 			String toStringDao = persistance.getDaoImpl(UserDao.class)
 					.toString();
 			assertTrue(toStringDao.contains("be.iesca.daoimpl.UserDaoImpl"));
-			toStringDao = persistance.getDaoImpl(BiereDao.class).toString();
+			toStringDao = persistance.getDaoImpl(OperationDao.class).toString();
 			assertTrue(toStringDao.contains("be.iesca.daoimpl.BiereDaoImpl"));
 			assertEquals("jdbc:postgresql://localhost:5432/postgres",
 					persistance.getUrl());
@@ -152,7 +152,7 @@ public class Test_Parser {
 			String toStringDao = persistance.getDaoImpl(UserDao.class)
 					.toString();
 			assertTrue(toStringDao.contains("be.iesca.daoimpl.UserDaoImpl"));
-			toStringDao = persistance.getDaoImpl(BiereDao.class)
+			toStringDao = persistance.getDaoImpl(OperationDao.class)
 					.toString();
 			assertTrue(toStringDao.contains("be.iesca.daoimpl.BiereDaoMockImpl"));
 			assertEquals("jdbc:postgresql://localhost:5432/postgres",

@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import be.iesca.controleurs.GestionnaireUseCases;
-import be.iesca.domaine.Biere;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.User;
 import be.iesca.usecase.GestionOperation;
@@ -31,24 +30,7 @@ public class Test_GestionnaireUseCases {
 	@BeforeAll
 	static void initialiser() {
 		bundle = new Bundle();
-		viderLaTable();
 		gestionnaire = GestionnaireUseCases.getInstance();
-	}
-
-	@AfterAll
-	static void terminer() {
-		viderLaTable();
-	}
-
-	@SuppressWarnings("unchecked")
-	private static void viderLaTable() {
-		GestionOperation gestionBieres = new GestionCompteCourantImpl();
-		gestionBieres.lister(bundle);
-		List<Biere> bieresObtenues = (List<Biere>) bundle.get(Bundle.LISTE);
-		for (Biere b : bieresObtenues) {
-			bundle.put(Bundle.NOM, b.getNom());
-			gestionBieres.supprimerBiere(bundle);
-		}
 	}
 
 	@Test
@@ -60,34 +42,20 @@ public class Test_GestionnaireUseCases {
 
 	@Test
 	@Order(2)
-	public void testAjouterBiere() {
-		gestionnaire.ajouterBiere(bundle);
+	public void testModifierCompteCourant() {
+		gestionnaire.modifierCompteCourant(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
 	@Test
 	@Order(3)
-	public void testModifierBiere() {
-		gestionnaire.modifierBiere(bundle);
+	public void testGetCompteCourant(String numero) {
+		gestionnaire.getCompte(bundle, numero);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
 	@Test
 	@Order(4)
-	public void testSupprimerBiere() {
-		gestionnaire.supprimerBiere(bundle);
-		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(5)
-	public void testListerBieres() {
-		gestionnaire.lister(bundle);
-		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(6)
 	public void testConnexion() {
 		this.user = new User();
 		this.user.setEmail(EMAIL_TOTO);
@@ -102,43 +70,16 @@ public class Test_GestionnaireUseCases {
 	}
 
 	@Test
-	@Order(7)
+	@Order(5)
 	public void testReconnexion() {
 		gestionnaire.connecterUser(bundle);
 		assertFalse((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 
 	@Test
-	@Order(8)
-	public void testAjouterBiereUserConnecte() {
-		Biere biere = new Biere("Blanche De Bruxelles", "Blanche", "blanche", "Brasserie Lefèvre");
-		bundle.put(Bundle.BIERE, biere);
-		gestionnaire.ajouterBiere(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(9)
-	public void testModifierBiereUserConnecte() {
-		Biere biere = new Biere("Blanche De Bruxelles", "Blanche!", "blanche", "Brasserie Lefèvre");
-		bundle.put(Bundle.BIERE, biere);
-		gestionnaire.modifierBiere(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(10)
-	public void testListeBieresUserConnecte() {
-		gestionnaire.lister(bundle);
-		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
-	}
-
-	@Test
-	@Order(11)
-	public void testSupprimerBiereUserConnecte() {
-		String nom = "Blanche De Bruxelles";
-		bundle.put(Bundle.NOM, nom);
-		gestionnaire.supprimerBiere(bundle);
+	@Order(6)
+	public void testGetCompteCourantConnecte(String numero) {
+		gestionnaire.getCompte(bundle, numero);
 		assertTrue((Boolean) bundle.get(Bundle.OPERATION_REUSSIE));
 	}
 

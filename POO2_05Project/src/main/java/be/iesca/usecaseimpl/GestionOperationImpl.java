@@ -2,18 +2,18 @@ package be.iesca.usecaseimpl;
 
 import java.util.List;
 
-import be.iesca.dao.BiereDao;
+import be.iesca.dao.OperationDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
-import be.iesca.domaine.CompteCourant;
+import be.iesca.domaine.Operation;
 import be.iesca.usecase.GestionOperation;
 
 public class GestionOperationImpl implements GestionOperation {
 
-	private operationDAO OperaionDao;
+	private OperationDao operationDao;
 
 	public GestionOperationImpl() {
-		this.operationDAO = (OperaionDao) DaoFactory.getInstance().getDaoImpl(OperaionDao.class);
+		this.operationDao = (OperationDao) DaoFactory.getInstance().getDaoImpl(OperationDao.class);
 	}
 
 	@Override
@@ -21,17 +21,17 @@ public class GestionOperationImpl implements GestionOperation {
 		boolean listeOk = true;
 		String message = "";
 		List<Operation> listeOperation= null;
-		listeOperation = this.operationDAO.listerOperation();
-		if (operationDAO==null) {
+		listeOperation = this.operationDao.listerOperation();
+		if (listeOperation==null) {
 			listeOk = false;
-		} else if (operationDAO.isEmpty())
+		} else if (listeOperation.isEmpty())
 			message = "Liste vide";
-		else if (operationDAO.size() == 1)
+		else if (listeOperation.size() == 1)
 			message = "Il y a 1 operation";
 		else
-			message = "Il y a " + operationDAO.size() + " opération";
+			message = "Il y a " + listeOperation.size() + " opération";
 		bundle.put(Bundle.OPERATION_REUSSIE, listeOk);
 		bundle.put(Bundle.MESSAGE, message);
-		bundle.put(Bundle.LISTE, operationDAO);
+		bundle.put(Bundle.LISTE, operationDao);
 	}
 }

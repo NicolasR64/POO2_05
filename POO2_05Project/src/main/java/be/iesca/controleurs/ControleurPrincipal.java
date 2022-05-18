@@ -50,7 +50,7 @@ public class ControleurPrincipal implements Initializable {
 				tfMessage.setText("");
 				root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueLogin.fxml"));
 				Stage stage = new Stage();
-				stage.setTitle("Connection");
+				stage.setTitle("Effectuer Virement");
 				//TO DO
 				//changer image
 				stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
@@ -71,7 +71,6 @@ public class ControleurPrincipal implements Initializable {
 			this.cbLister.setDisable(true);
 			this.majMessage();
 		}
-		
 	}
 
 	private void majMessage() {
@@ -86,6 +85,23 @@ public class ControleurPrincipal implements Initializable {
 			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListeOperation.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Liste des opération");
+			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(new Scene(root));
+			stage.setResizable(false);
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void trtBoutonVirement() {
+		Parent root;
+		try {
+			tfMessage.setText("");
+			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueVirement.fxml"));
+			Stage stage = new Stage();
+			stage.setTitle("Page de virements");
 			stage.getIcons().add(new Image("/be/iesca/application/biere.jpg"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(new Scene(root));
