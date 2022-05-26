@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import be.iesca.domaine.Bundle;
+import be.iesca.domaine.CompteCourant;
 import be.iesca.domaine.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +40,10 @@ public class ControleurLogin implements Initializable {
 		Bundle bundle = new Bundle();
 		bundle.put(Bundle.USER, user);
 		this.gestionnaire.connecterUser( bundle );
+		
 		if((boolean)bundle.get(Bundle.OPERATION_REUSSIE)) {
+			user = (User) bundle.get(Bundle.USER);
+			this.gestionnaire.getCompte(bundle, user.getIdCompte());
 			ControleurPrincipal.getInstance().connexion(bundle);
 			
 			tfEmail.getScene().getWindow().hide();

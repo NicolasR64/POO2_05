@@ -25,9 +25,11 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		if (compteDao==null) {
 			CompteOk = false;
 		}
+		
 		bundle.put(Bundle.OPERATION_REUSSIE, CompteOk);
 		bundle.put(Bundle.MESSAGE, message);
 		bundle.put(Bundle.LISTE, compteDao);
+		bundle.put(Bundle.COMPTECOURANT, compteCourant);
 	}
 
 	@Override

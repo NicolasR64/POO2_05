@@ -10,9 +10,8 @@ import be.iesca.dao.CompteDao;
 import be.iesca.domaine.CompteCourant;
 
 public class CompteDaoImpl implements CompteDao {
-	private static final String GET = "SELECT * FROM comptes c WHERE c.numero = ?";
+	private static final String GET = "SELECT * FROM comptes WHERE id = ?";
 	private static final String MAJ = "UPDATE comptes SET solde= ?, decouvert= ?, isCloture= ? where numero= ?";
-	private static final String LISTER = "SELECT * FROM comptes c ORDER BY c.numero";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
 	public CompteDaoImpl() {
@@ -62,7 +61,7 @@ public class CompteDaoImpl implements CompteDao {
 	}
 
 	@Override
-	public CompteCourant getCompte(int numero) {
+	public CompteCourant getCompte(int id) {
 		CompteCourant compte = null;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -70,10 +69,10 @@ public class CompteDaoImpl implements CompteDao {
 		try {
 			con = DaoFactory.getInstance().getConnexion();
 			ps = con.prepareStatement(GET);
-			ps.setInt(1, numero);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				compte = new CompteCourant(numero, rs.getDouble(2), rs.getBoolean(3), rs.getDouble(3), rs.getString(4));
+				compte = new CompteCourant(id, rs.getDouble("solde"), rs.getBoolean("isCloture"), rs.getDouble("decouvert"), rs.getString("numero"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

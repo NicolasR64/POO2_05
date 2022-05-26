@@ -124,6 +124,9 @@ public class ControleurPrincipal implements Initializable {
 	public void connexion(Bundle bundle) {
 		this.bundle.put(Bundle.MESSAGE, bundle.get(Bundle.MESSAGE));
 		this.bundle.put(Bundle.USER, bundle.get(Bundle.USER));
+		this.bundle.put(Bundle.COMPTECOURANT, bundle.get(Bundle.COMPTECOURANT));
+		CompteCourant compte = (CompteCourant) this.bundle.get(Bundle.COMPTECOURANT);
+		afficherCompteCourant(compte);
 		this.cbConnecter.setText("Deconnecter");
 		this.cbVirement.setDisable(false);
 		this.cbLister.setDisable(false);

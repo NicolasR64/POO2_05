@@ -5,6 +5,7 @@ import be.iesca.domaine.User;
 import be.iesca.usecase.GestionCompteCourant;
 import be.iesca.usecase.GestionOperation;
 import be.iesca.usecase.GestionUsers;
+import be.iesca.usecaseimpl.GestionCompteCourantImpl;
 import be.iesca.usecaseimpl.GestionOperationImpl;
 import be.iesca.usecaseimpl.GestionUsersImpl;
 /**
@@ -29,6 +30,7 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 	private GestionnaireUseCases() {
 		this.gestionUsers = new GestionUsersImpl();
 		this.gestionOperation = new GestionOperationImpl();
+		this.gestionCompteCourant = new GestionCompteCourantImpl();
 		this.user = null; // pas de user connecté
 	}
 
