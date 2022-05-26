@@ -28,3 +28,10 @@ POO2_05Project/bin/test/be/iesca/tests/Test_GestionUsers.class
 POO2_05Project/bin/test/be/iesca/tests/Test_Integration.class
 POO2_05Project/bin/test/be/iesca/tests/Test_Parser.class
 POO2_05Project/bin/test/be/iesca/tests/Test_UserDao.class
+POO2_05Project/bin/main/be/iesca/controleurs/ControleurPrincipal.class
+POO2_05Project/bin/main/be/iesca/controleurs/GestionnaireUseCases.class
+POO2_05Project/bin/main/be/iesca/dao/CompteDao.class
+POO2_05Project/bin/main/be/iesca/daoimpl/CompteDaoImpl.class
+POO2_05Project/bin/main/be/iesca/domaine/Bundle.class
+POO2_05Project/bin/main/be/iesca/usecase/GestionCompteCourant.class
+POO2_05Project/bin/main/be/iesca/usecaseimpl/GestionCompteCourantImpl.class
