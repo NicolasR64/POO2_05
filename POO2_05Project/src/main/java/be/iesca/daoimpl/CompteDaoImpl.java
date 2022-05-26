@@ -62,7 +62,7 @@ public class CompteDaoImpl implements CompteDao {
 	}
 
 	@Override
-	public CompteCourant getCompte(String numero) {
+	public CompteCourant getCompte(int numero) {
 		CompteCourant compte = null;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -70,10 +70,10 @@ public class CompteDaoImpl implements CompteDao {
 		try {
 			con = DaoFactory.getInstance().getConnexion();
 			ps = con.prepareStatement(GET);
-			ps.setString(1, numero.trim());
+			ps.setInt(1, numero);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				compte = new CompteCourant(numero, rs.getDouble(2), rs.getDouble(3));
+				compte = new CompteCourant(numero, rs.getDouble(2), rs.getBoolean(3), rs.getDouble(3), rs.getString(4));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -82,5 +82,4 @@ public class CompteDaoImpl implements CompteDao {
 		}
 		return compte;
 	}
-
 }

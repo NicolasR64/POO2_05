@@ -71,13 +71,13 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 	}
 	
 	@Override
-	public void getCompte(Bundle bundle, String numero) {
+	public void getCompte(Bundle bundle, int id) {
 		if (user == null) { // pas de user identifié
 			bundle.put(Bundle.MESSAGE,
 					"Opération impossible. Pas d'utilisateur connecté.");
 			bundle.put(Bundle.OPERATION_REUSSIE, false);
 		} else {
-			this.gestionCompteCourant.getCompte(bundle, numero);
+			this.gestionCompteCourant.getCompte(bundle, id);
 		}
 	}
 	
@@ -90,5 +90,4 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 		}
 		
 	}
-
 }

@@ -15,13 +15,13 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		this.compteDao = (CompteDao) DaoFactory.getInstance().getDaoImpl(CompteDao.class);
 	}
 
-	public void getCompte(Bundle bundle, String numero) {
+	public void getCompte(Bundle bundle, int id) {
 		boolean CompteOk = true;
 		String message = "";
 		CompteCourant compteCourant = null;
 		
 		//TO DO, trouvé le nom du compte
-		compteCourant = this.compteDao.getCompte(numero);
+		compteCourant = this.compteDao.getCompte(id);
 		if (compteDao==null) {
 			CompteOk = false;
 		}
@@ -41,7 +41,7 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		}else if(compte.getIsCloture() == null || compte.getIsCloture().isEmpty()) {
 			message = "Impossible d'effectuer une modification, la valeur de cloture est manquante";
 		}else{
-			CompteCourant compteDB = this.compteDao.getCompte(compte.getNumero());
+			CompteCourant compteDB = this.compteDao.getCompte(compte.getId());
 			if(compteDB == null) {
 				message = "La modification n'a pas pu etre realise, le compte n'existe pas";
 			}else {
