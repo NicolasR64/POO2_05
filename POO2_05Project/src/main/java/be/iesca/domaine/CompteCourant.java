@@ -1,6 +1,8 @@
 package be.iesca.domaine;
 public class CompteCourant implements CompteEnBanque {
 
+	private int id;
+	
 	private String numero;
 	
 	private double solde;
@@ -9,17 +11,18 @@ public class CompteCourant implements CompteEnBanque {
 	
 	private boolean cloture;	
 
-	public CompteCourant(String numero, double decouvertMax) throws Exception {
-		this(numero,0,decouvertMax);
+	public CompteCourant(int id, String numero, double decouvertMax) throws Exception {
+		this(id,0,false,decouvertMax,numero);
 	}
 
-	public CompteCourant(String numero, double solde, double decouvertMax) throws Exception {
+	public CompteCourant(int id, double solde, boolean isCloture,double decouvertMax,String numero) throws Exception {
 		if (solde < 0) throw new Exception("Le solde de depart doit etre positif");
 		if (decouvertMax < 0) throw new Exception("Limite de decouvert negative");
+		this.id = id;
 		this.numero = numero;
 		this.solde = solde;
 		this.decouvertMax = decouvertMax;
-		this.cloture = false;
+		this.cloture = isCloture;
 	}	
 	
 	public String getNumero() {
@@ -46,7 +49,10 @@ public class CompteCourant implements CompteEnBanque {
 			return "non";
 		}
 	}
-
+	
+	public int getId() {
+		return id;
+	}
 
 	public void setDecouvertMax(double decouvertMax) throws Exception {
 		if(isCloture()) throw new Exception("Compte cloture");

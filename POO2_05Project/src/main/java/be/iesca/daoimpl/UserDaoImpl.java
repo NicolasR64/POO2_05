@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
 				user = new User();
 				user.setNom(rs.getString("nom"));
 				user.setEmail(rs.getString("email"));
+				user.setIdCompte(rs.getInt("compte"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
