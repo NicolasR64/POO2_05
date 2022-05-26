@@ -55,7 +55,7 @@
             <Label prefHeight="38.0" prefWidth="82.0" text="Est cloturé" GridPane.rowIndex="2" />
             <TextField fx:id="tfNumero" GridPane.columnIndex="1" />
             <TextField fx:id="tfSolde" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfIsCloture" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfCloture" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tfDecouvertMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>

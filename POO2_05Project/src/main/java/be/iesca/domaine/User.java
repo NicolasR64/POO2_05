@@ -4,6 +4,7 @@ public class User {
 	private String email; // identifiant unique
 	private String nom;
 	private String password;
+	private int idCompte;
 	private CompteEnBanque compteCourant;
 	
 	public User() {
@@ -11,6 +12,7 @@ public class User {
 		this.email = "";
 		this.nom = "";
 		this.password = "";
+		this.idCompte = 0;
 	}
 	
 	
@@ -44,6 +46,14 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+	
+	public int getIdCompte() {
+		return idCompte;
+	}
+	
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
 	}
 
 	public CompteEnBanque getCompteCourant() {
