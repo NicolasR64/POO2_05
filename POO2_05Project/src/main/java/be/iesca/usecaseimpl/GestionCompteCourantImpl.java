@@ -57,6 +57,23 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		}
 		bundle.put(Bundle.OPERATION_REUSSIE, modificationReussie);
 		bundle.put(Bundle.MESSAGE, message);
+	}
+
+	@Override
+	public void getCompteByNumero(Bundle bundle, String numero) {
+		boolean CompteOk = true;
+		String message = "";
+		CompteCourant compteVirement = null;
 		
+		//TO DO, trouvé le nom du compte
+		compteVirement = this.compteDao.getCompteByNumero(numero);
+		if (compteDao==null) {
+			CompteOk = false;
+		}
+		
+		bundle.put(Bundle.OPERATION_REUSSIE, CompteOk);
+		bundle.put(Bundle.MESSAGE, message);
+		bundle.put(Bundle.LISTE, compteDao);
+		bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
 	}
 }
