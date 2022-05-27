@@ -55,8 +55,10 @@ public class ControleurVirement implements Initializable {
 			User user = (User) bundle.get(Bundle.USER);
 			user.setCompteCourant(compte);
 			try {
+				compteVirement = (CompteCourant) bundle.get(Bundle.COMPTEVIREMENT);
 				compte.effectuerVirement(user, compteVirement, montant);
 				bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
+				bundle.put(Bundle.COMPTECOURANT, compte);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -66,6 +68,7 @@ public class ControleurVirement implements Initializable {
 			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));	
 		}else {
 			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));
+			ControleurPrincipal.getInstance().afficherCompteCourant(compteVirement);
 		}
 	}
 	

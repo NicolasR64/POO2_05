@@ -151,6 +151,4 @@ public class ControleurPrincipal implements Initializable {
 		   }
 		   return montant;
 	}
-
-
 }
