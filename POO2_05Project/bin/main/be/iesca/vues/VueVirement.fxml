@@ -10,9 +10,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.iesca.controleurs.ControleurVirement">
    <children>
-      <AnchorPane layoutX="-15.0" prefHeight="233.0" prefWidth="362.0">
+      <AnchorPane layoutX="-16.0" prefHeight="233.0" prefWidth="362.0">
          <children>
-            <GridPane layoutX="35.0" layoutY="59.0" prefHeight="91.0" prefWidth="291.0">
+            <GridPane layoutX="35.0" layoutY="25.0" prefHeight="91.0" prefWidth="291.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.79998016357422" minWidth="10.0" prefWidth="112.00001220703126" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.4000244140625" minWidth="10.0" prefWidth="144.79998779296875" />
@@ -29,8 +29,9 @@
                   <TextField fx:id="labelMontant" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Button fx:id="boutonConfirmer" layoutX="206.0" layoutY="175.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="97.0" text="Confirmer" />
-            <Button fx:id="boutonRetour" layoutX="75.0" layoutY="175.0" mnemonicParsing="false" onAction="#trtBoutonRetour" prefHeight="30.0" prefWidth="79.0" text="Retour" />
+            <Button fx:id="boutonConfirmer" layoutX="216.0" layoutY="174.0" mnemonicParsing="false" onAction="#trtBoutonConfirmer" prefHeight="29.0" prefWidth="97.0" text="Confirmer" />
+            <Button fx:id="boutonRetour" layoutX="81.0" layoutY="173.0" mnemonicParsing="false" onAction="#trtBoutonRetour" prefHeight="30.0" prefWidth="79.0" text="Retour" />
+            <Label fx:id="labelMessage" layoutX="67.0" layoutY="124.0" prefHeight="44.0" prefWidth="232.0" />
          </children>
       </AnchorPane>
    </children>

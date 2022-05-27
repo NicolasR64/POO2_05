@@ -78,7 +78,10 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 			bundle.put(Bundle.MESSAGE,
 					"Opération impossible. Pas d'utilisateur connecté.");
 			bundle.put(Bundle.OPERATION_REUSSIE, false);
-		} else {
+		} else if(bundle.get(Bundle.USER) == null) {
+			bundle.put(Bundle.USER, user);
+			this.gestionCompteCourant.getCompte(bundle);
+		}else {
 			this.gestionCompteCourant.getCompte(bundle);
 		}
 	}
@@ -93,13 +96,23 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 	}
 
 	@Override
-	public void getCompteByNumero(Bundle bundle, String nombre) {
+	public void getCompteByNumero(Bundle bundle) {
 		if (user == null) { // pas de user identifié
 			bundle.put(Bundle.MESSAGE,
 					"Opération impossible. Pas d'utilisateur connecté.");
 			bundle.put(Bundle.OPERATION_REUSSIE, false);
 		} else {
-			this.gestionCompteCourant.getCompteByNumero(bundle, nombre);
+			this.gestionCompteCourant.getCompteByNumero(bundle);
+		}
+	}
+
+	@Override
+	public void modifierCompteVirement(Bundle bundle) {
+		if(user == null) {
+			bundle.put(Bundle.MESSAGE, "Operation impossible. Pas d'utilisateur connecte.");
+			bundle.put(Bundle.OPERATION_REUSSIE, false);
+		}else {
+			this.gestionCompteCourant.modifierCompteVirement(bundle);
 		}
 	}
 }
