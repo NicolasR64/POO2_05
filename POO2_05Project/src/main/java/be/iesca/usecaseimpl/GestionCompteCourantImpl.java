@@ -62,13 +62,14 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 	}
 
 	@Override
-	public void getCompteByNumero(Bundle bundle, String numero) {
+	public void getCompteByNumero(Bundle bundle) {
 		boolean CompteOk = true;
 		String message = "";
 		CompteCourant compteVirement = null;
+		CompteCourant compteBundle = (CompteCourant) bundle.get(Bundle.COMPTEVIREMENT);
 		
 		//TO DO, trouvé le nom du compte
-		compteVirement = this.compteDao.getCompteByNumero(numero);
+		compteVirement = this.compteDao.getCompteByNumero(compteBundle.getNumero());
 		if (compteDao==null) {
 			CompteOk = false;
 		}
@@ -77,5 +78,32 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		bundle.put(Bundle.MESSAGE, message);
 		bundle.put(Bundle.LISTE, compteDao);
 		bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
+	}
+
+	@Override
+	public void modifierCompteVirement(Bundle bundle) {
+		boolean modificationReussie = false;
+		String message = "";
+		CompteCourant compte= (CompteCourant) bundle.get(Bundle.COMPTEVIREMENT);
+		
+		if(compte.getNumero() == null || compte.getNumero().isEmpty()) {
+			message = "Impossible d'effectuer une modification, le numero est manquant";
+		}else if(compte.getIsCloture() == null || compte.getIsCloture().isEmpty()) {
+			message = "Impossible d'effectuer une modification, la valeur de cloture est manquante";
+		}else{
+			CompteCourant compteDB = this.compteDao.getCompteByNumero(compte.getNumero());
+			if(compteDB == null) {
+				message = "La modification n'a pas pu etre realise, le compte n'existe pas";
+			}else {
+				modificationReussie = this.compteDao.modifierCompteVirement(compte);
+				if(modificationReussie) {
+					message = "Modification du compte reussie";
+				}else {
+					message = "La modification n'a pas pu etre faite";
+				}
+			}
+		}
+		bundle.put(Bundle.OPERATION_REUSSIE, modificationReussie);
+		bundle.put(Bundle.MESSAGE, message);
 	}
 }
