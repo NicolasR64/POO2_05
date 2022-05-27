@@ -9,7 +9,15 @@ public class CompteCourant implements CompteEnBanque {
 	
 	private double decouvertMax;
 	
-	private boolean cloture;	
+	private boolean cloture;
+	
+	public CompteCourant() {
+		this.id = 0;
+		this.numero = "";
+		this.cloture = false;
+		this.solde = 0;
+		this.decouvertMax = 0;
+	}
 
 	public CompteCourant(int id, String numero, double decouvertMax) throws Exception {
 		this(id,0,false,decouvertMax,numero);
@@ -24,6 +32,10 @@ public class CompteCourant implements CompteEnBanque {
 		this.decouvertMax = decouvertMax;
 		this.cloture = isCloture;
 	}	
+	
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 	
 	public String getNumero() {
 		return numero;
