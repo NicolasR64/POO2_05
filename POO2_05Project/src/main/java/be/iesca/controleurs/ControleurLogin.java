@@ -43,7 +43,7 @@ public class ControleurLogin implements Initializable {
 		
 		if((boolean)bundle.get(Bundle.OPERATION_REUSSIE)) {
 			user = (User) bundle.get(Bundle.USER);
-			this.gestionnaire.getCompte(bundle, user.getIdCompte());
+			this.gestionnaire.getCompte(bundle);
 			ControleurPrincipal.getInstance().connexion(bundle);
 			
 			tfEmail.getScene().getWindow().hide();

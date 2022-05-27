@@ -4,6 +4,7 @@ import be.iesca.dao.CompteDao;
 import be.iesca.daoimpl.DaoFactory;
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.CompteCourant;
+import be.iesca.domaine.User;
 import be.iesca.usecase.GestionCompteCourant;
 
 public class GestionCompteCourantImpl implements GestionCompteCourant {
@@ -15,13 +16,14 @@ public class GestionCompteCourantImpl implements GestionCompteCourant {
 		this.compteDao = (CompteDao) DaoFactory.getInstance().getDaoImpl(CompteDao.class);
 	}
 
-	public void getCompte(Bundle bundle, int id) {
+	public void getCompte(Bundle bundle) {
 		boolean CompteOk = true;
 		String message = "";
 		CompteCourant compteCourant = null;
+		User user = (User) bundle.get(Bundle.USER);
 		
 		//TO DO, trouvé le nom du compte
-		compteCourant = this.compteDao.getCompte(id);
+		compteCourant = this.compteDao.getCompte(user.getIdCompte());
 		if (compteDao==null) {
 			CompteOk = false;
 		}

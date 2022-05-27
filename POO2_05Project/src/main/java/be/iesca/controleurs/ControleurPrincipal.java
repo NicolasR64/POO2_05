@@ -98,6 +98,7 @@ public class ControleurPrincipal implements Initializable {
 	public void trtBoutonVirement() {
 		Parent root;
 		try {
+			
 			tfMessage.setText("");
 			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueVirement.fxml"));
 			Stage stage = new Stage();
