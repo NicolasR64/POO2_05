@@ -3,15 +3,13 @@ package be.iesca.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 import be.iesca.dao.CompteDao;
 import be.iesca.domaine.CompteCourant;
 
 public class CompteDaoImpl implements CompteDao {
 	private static final String GET = "SELECT * FROM comptes WHERE id = ?";
-	private static final String MAJ = "UPDATE comptes SET solde= ?, decouvert= ?, isCloture= ? where numero= ?";
+	private static final String MAJ = "UPDATE comptes SET solde= ?, \"isCloture\"= ?,  decouvert= ?, numero = ?  WHERE id= ?";
+	private static final String MAJVIRM = "UPDATE comptes SET solde= ?, \"isCloture\"= ?,  decouvert= ? WHERE numero= ?";
 	private static final String GETBYNUMERO = "SELECT * FROM comptes WHERE numero = ?";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
@@ -44,11 +42,12 @@ public class CompteDaoImpl implements CompteDao {
 		try {
 			con = DaoFactory.getInstance().getConnexion();
 			ps = con.prepareStatement(MAJ);
-			String numero = compte.getNumero().trim();
-			ps.setString(4, numero); // <------------------- 4 ème paramètre !
+			int id = compte.getId();
+			ps.setInt(5, id);
 			ps.setDouble(1, compte.getSolde());
-			ps.setDouble(2, compte.getDecouvertMax());
-			ps.setBoolean(3, compte.isCloture());
+			ps.setBoolean(2, compte.isCloture());
+			ps.setDouble(3, compte.getDecouvertMax());
+			ps.setString(4, compte.getNumero());
 			int resultat = ps.executeUpdate();
 			if (resultat == 1) {
 				modificationReussie = true;
@@ -103,5 +102,32 @@ public class CompteDaoImpl implements CompteDao {
 			cloturer(rs, ps, con);
 		}
 		return compte;
+	}
+
+	@Override
+	public boolean modifierCompteVirement(CompteCourant compte) {
+		boolean modificationReussie = false;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = DaoFactory.getInstance().getConnexion();
+			ps = con.prepareStatement(MAJVIRM);
+			String numero = compte.getNumero();
+			ps.setString(4, numero.trim());
+			 // <------------------- 4 ème paramètre !
+			ps.setDouble(1, compte.getSolde());
+			ps.setBoolean(2, compte.isCloture());
+			ps.setDouble(3, compte.getDecouvertMax());
+			
+			int resultat = ps.executeUpdate();
+			if (resultat == 1) {
+				modificationReussie = true;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			cloturer(null, ps, con);
+		}
+		return modificationReussie;
 	}
 }
