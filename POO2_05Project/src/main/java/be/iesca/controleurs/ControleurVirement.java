@@ -1,36 +1,41 @@
 package be.iesca.controleurs;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.CompteCourant;
+import be.iesca.domaine.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ControleurVirement implements Initializable {
 
-	private static ControleurVirement singleton;
-	private Bundle bundle;
-	
-	public static ControleurVirement getInstance() {
-		return singleton;
-	}
+	private GestionnaireUseCases gestionnaire = GestionnaireUseCases.getInstance();
+	private Bundle bundle = new Bundle();
+	private CompteCourant compte;
 	
 	@FXML
-	private javafx.scene.control.Button boutonRetour;
+	private Button boutonRetour, boutonConfirmer;
 	
 	@FXML
-	private TextField labelNumero;
+	private TextField labelNumero, labelMontant;
+	
+	@FXML
+	private Label labelMessage;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		labelMessage.setText("");
+		gestionnaire.getCompte(bundle);
+		compte = (CompteCourant) bundle.get(Bundle.COMPTECOURANT);
 	}
 	
 	public void trtBoutonRetour(ActionEvent event) {
@@ -38,14 +43,42 @@ public class ControleurVirement implements Initializable {
 	    stage.close();
 	}
 	
-	public void garnirBundle(Bundle bundle) {
-		this.bundle = bundle;
-		CompteCourant compte = (CompteCourant) this.bundle.get(Bundle.COMPTECOURANT);
-		this.afficherCompte(compte);
+	public void trtBoutonConfirmer() throws Exception {
+		CompteCourant compteVirement = new CompteCourant();
+		String montantString = labelMontant.getText();
+		Double montant = getMontant(montantString);
+		compteVirement.setNumero(labelNumero.getText());
+		bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
+		this.gestionnaire.getCompteByNumero(bundle);
+		
+		if((boolean)bundle.get(Bundle.OPERATION_REUSSIE)){
+			User user = (User) bundle.get(Bundle.USER);
+			user.setCompteCourant(compte);
+			try {
+				compte.effectuerVirement(user, compteVirement, montant);
+				bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			this.gestionnaire.modifierCompteCourant(bundle);
+			this.gestionnaire.modifierCompteVirement(bundle);
+			
+			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));	
+		}else {
+			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));
+		}
 	}
 	
-	public void afficherCompte(CompteCourant compte) {
-		labelNumero.setText(compte.getNumero());
+	public double getMontant(String sMontant) throws Exception {
+		   double montant;
+		   if(sMontant.contains(",")) {
+			   NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+			   Number number = format.parse(sMontant);
+			   montant = number.doubleValue();
+		   }else {
+			   montant = Double.parseDouble(sMontant);
+		   }
+		   return montant;
 	}
 
 }
