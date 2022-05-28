@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import be.iesca.dao.OperationDao;
@@ -12,7 +13,7 @@ import be.iesca.domaine.Operation;
 public class OperationDaoImpl implements OperationDao{
 	//To do
 	private static final String AJOUT = "INSERT INTO operations (compte, montant, solde, type) VALUES (?,?,?,?)\";";
-	private static final String LISTER = "SELECT * FROM operations o ORDER BY o.date";
+	private static final String LISTER = "SELECT * FROM operations o ORDER BY o.compte";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
 	public OperationDaoImpl() {
@@ -44,11 +45,9 @@ public class OperationDaoImpl implements OperationDao{
 		try {
 			con = DaoFactory.getInstance().getConnexion();
 			ps = con.prepareStatement(AJOUT);
-			ps.setInt(1, operation.getType());
+			ps.setInt(1, operation.getAutreCompte());
 			ps.setDouble(2, operation.getMontant());
-			ps.setString(3, operation.getAutreCompte().getNumero());
-			ps.setInt(4, operation.getNumero());
-			ps.setDouble(5, operation.getSolde());
+			ps.setDouble(3, operation.getSolde());
 			int resultat = ps.executeUpdate();
 			if (resultat == 1) {
 				ajoutReussi = true;
@@ -72,7 +71,7 @@ public class OperationDaoImpl implements OperationDao{
 			ps = con.prepareStatement(LISTER);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Operation operation = new Operation( rs.getString(3), rs.getDouble(2), rs.getInt(4), rs.getDouble(5));
+				Operation operation = new Operation( rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getInt(4) );
 				liste.add(operation);
 			}
 		} catch (Exception ex) {

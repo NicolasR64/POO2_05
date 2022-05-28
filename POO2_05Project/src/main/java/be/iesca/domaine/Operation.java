@@ -1,5 +1,4 @@
 package be.iesca.domaine;
-import java.util.GregorianCalendar;
 
 public class Operation {
 
@@ -13,9 +12,8 @@ public class Operation {
 	public static final int VIREMENT_EN_ATTENTE = 6;
 	
 	// attributs
-	private GregorianCalendar date; // date de l'opération
 	private double montant; // montant de l'opération
-	private CompteEnBanque autreCompte; // utilisé pour les virements
+	private int autreCompte; // utilisé pour les virements
 	private int numero; // numéro d'identification de l'opération
 	private double solde; // solde du compte après l'opération
 	private int type; //type d'opération effectué
@@ -23,41 +21,43 @@ public class Operation {
 	
 	// construction d'une opération, on ne connait pas encore son numéro (-1)
 	// il sera déterminé lors de l'ajout de l'opération à l'historique
-	public Operation( CompteEnBanque autreCompte, double montant, int type,
+	public Operation( int autreCompte, double montant, int type,
             double solde ) {
         this.autreCompte = autreCompte;
         if ( type == Operation.RETRAIT || 
                 type == Operation.VIREMENT_DEBIT ) montant = -montant;
-        this.date = new GregorianCalendar();
         this.montant = montant;
-        this.numero = -1;
         this.type = type;
         this.solde = solde;
         this.numCompteEnBanque = null;
     }
 	
 	public Operation( String numeroCompteBancaireAutre, double montant, int type, double solde ) {
-        this.autreCompte = autreCompte;
         if ( type == Operation.RETRAIT || type == Operation.VIREMENT_DEBIT ) montant = -montant;
-        this.date = new GregorianCalendar();
         this.montant = montant;
         this.numero = -1;
         this.type = type;
         this.solde = solde;
         this.numCompteEnBanque = numeroCompteBancaireAutre;
     }
+	
+	public Operation( int numero, double montant, double solde, int compte) {
+		this.numero = numero;
+		this.montant = montant;
+		this.solde = solde;
+		this.autreCompte = compte;
+	}
 
 	// méthode qui renvoie les données principales de l'opération
 	// sous forme d'une chaîne de caractères
 	public String toString() {
-		String message =  "Opération n° " + this.numero + " du " + 
-		this.date + " de type : " + getTypeString()  + 
+		String message =  "Opération n° " + this.numero + " du " + " de type : " + getTypeString()  + 
 		", montant : " + this.montant + ", solde : " + this.solde;
 		
 		if  ( this.type == VIREMENT_CREDIT ) 
-			message += " compte débiteur : " +	this.autreCompte.getNumero();
+			message += " compte débiteur : " +	this.autreCompte;
 		if  ( this.type == VIREMENT_DEBIT ) 
-			message += " compte créditeur : " + this.autreCompte.getNumero();
+			message += " compte créditeur : " + this.autreCompte;
 		return message; 
 	}
 
@@ -82,10 +82,6 @@ public class Operation {
 		this.numero = numéro;
 	}
 
-	public GregorianCalendar getDate() {
-		return date;
-	}
-
 	public int getType() {
 		return type;
 	}
@@ -94,7 +90,7 @@ public class Operation {
 		return montant;
 	}
 
-	public CompteEnBanque getAutreCompte() {
+	public int getAutreCompte() {
 		return autreCompte;
 	}
 
@@ -115,16 +111,6 @@ public class Operation {
 		if (getClass() != obj.getClass())
 			return false;
 		Operation other = (Operation) obj;
-		if (autreCompte == null) {
-			if (other.autreCompte != null)
-				return false;
-		} else if (!autreCompte.equals(other.autreCompte))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
 		if (Double.doubleToLongBits(montant) != Double
 				.doubleToLongBits(other.montant))
 			return false;

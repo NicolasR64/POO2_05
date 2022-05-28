@@ -25,10 +25,12 @@ public class ControleurListeOperation implements Initializable {
 
 	private GestionnaireUseCases gestionnaire = GestionnaireUseCases.getInstance();
 	private ObservableList<Operation> tvObservableList = FXCollections.observableArrayList();
+	
+	private Bundle bundle = new Bundle();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Bundle bundle = new Bundle();
+		
 		gestionnaire.lister(bundle);
 		@SuppressWarnings("unchecked")
 		List<Operation> listeOperation = (List<Operation>) bundle.get(Bundle.LISTE);
