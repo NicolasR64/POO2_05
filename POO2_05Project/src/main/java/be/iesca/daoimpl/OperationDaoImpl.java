@@ -11,8 +11,8 @@ import be.iesca.domaine.Operation;
 
 public class OperationDaoImpl implements OperationDao{
 	//To do
-	private static final String AJOUT = "INSERT INTO Operation (numeroCompteBancaireAutre, montant, type, solde) VALUES (?,?,?,?)\";";
-	private static final String LISTER = "SELECT * FROM Operation o ORDER BY o.numero";
+	private static final String AJOUT = "INSERT INTO operations (compte, montant, solde, type) VALUES (?,?,?,?)\";";
+	private static final String LISTER = "SELECT * FROM operations o ORDER BY o.date";
 
 	// obligatoire pour pouvoir construire une instance avec newInstance()
 	public OperationDaoImpl() {
