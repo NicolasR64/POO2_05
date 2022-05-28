@@ -101,6 +101,10 @@ public class Operation {
 	public double getSolde() {
 		return solde;
 	}
+	
+	public String getNumCompteEnBanque() {
+		return this.numCompteEnBanque;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

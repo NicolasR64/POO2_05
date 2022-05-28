@@ -38,15 +38,4 @@ public class ControleurListeOperation implements Initializable {
 		colBeneficiaire.setCellValueFactory(new PropertyValueFactory<Operation, String>("beneficiare"));
 		this.tableView.setItems(tvObservableList);
 	}
-
-	public void selection(MouseEvent mouseEvent) {
-		if (mouseEvent.getClickCount() == 2) {
-			int index = tableView.getSelectionModel().getSelectedIndex();
-			if (index<0 || index >= tvObservableList.size()) return;
-			Operation operation = tvObservableList.get(index);
-			//TO DO
-			//ControleurPrincipal.getInstance().afficherOperation(operation);
-			tableView.getScene().getWindow().hide();
-		}
-	}
 }
