@@ -68,7 +68,8 @@ public class ControleurVirement implements Initializable {
 			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));	
 		}else {
 			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));
-			ControleurPrincipal.getInstance().afficherCompteCourant(compteVirement);
+			compte = (CompteCourant) bundle.get(Bundle.COMPTECOURANT);
+			ControleurPrincipal.getInstance().afficherCompteCourant(compte);
 		}
 	}
 	
