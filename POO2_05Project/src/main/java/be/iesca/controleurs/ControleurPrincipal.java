@@ -82,7 +82,7 @@ public class ControleurPrincipal implements Initializable {
 		Parent root;
 		try {
 			tfMessage.setText("");
-			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListeOperation.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/be/iesca/vues/VueListOperation.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Liste des opération");
 			stage.getIcons().add(new Image("/be/iesca/application/banque.jpg"));
