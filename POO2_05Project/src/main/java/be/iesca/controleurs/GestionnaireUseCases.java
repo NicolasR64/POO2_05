@@ -115,4 +115,13 @@ public class GestionnaireUseCases implements GestionUsers, GestionOperation, Ges
 			this.gestionCompteCourant.modifierCompteVirement(bundle);
 		}
 	}
+	
+	public void ajouterOperation(Bundle bundle) {
+		if(user == null) {
+			bundle.put(Bundle.MESSAGE, "Operation impossible. Pas d'utilisateur connecte.");
+			bundle.put(Bundle.OPERATION_REUSSIE, false);
+		}else {
+			this.gestionOperation.ajouterOperation(bundle);
+		}
+	}
 }

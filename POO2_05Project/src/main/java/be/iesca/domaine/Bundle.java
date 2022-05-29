@@ -13,6 +13,7 @@ public class Bundle {
 	public static final String COMPTECOURANT = "compteCourant";
 	public static final String COMPTEVIREMENT = "compteVirement";
 	public static final String USER = "user";
+	public static final String OPERATION = "operation";
 	public static final String OPERATION_REUSSIE = "operationReussie";
 	public static final String LISTE = "liste";
 	public static final String NOM = "nom";
