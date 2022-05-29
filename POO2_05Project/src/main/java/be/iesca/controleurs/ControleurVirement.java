@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import be.iesca.domaine.Bundle;
 import be.iesca.domaine.CompteCourant;
+import be.iesca.domaine.Operation;
 import be.iesca.domaine.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,6 +58,8 @@ public class ControleurVirement implements Initializable {
 			try {
 				compteVirement = (CompteCourant) bundle.get(Bundle.COMPTEVIREMENT);
 				compte.effectuerVirement(user, compteVirement, montant);
+				Operation operation = new Operation(compteVirement.getId(), montant, 6,user.getCompteCourant().getSolde());
+				bundle.put(Bundle.OPERATION, operation);
 				bundle.put(Bundle.COMPTEVIREMENT, compteVirement);
 				bundle.put(Bundle.COMPTECOURANT, compte);
 			} catch (Exception e) {
@@ -64,6 +67,7 @@ public class ControleurVirement implements Initializable {
 			}
 			this.gestionnaire.modifierCompteCourant(bundle);
 			this.gestionnaire.modifierCompteVirement(bundle);
+			this.gestionnaire.ajouterOperation(bundle);
 			
 			labelMessage.setText((String) bundle.get(Bundle.MESSAGE));	
 		}else {
