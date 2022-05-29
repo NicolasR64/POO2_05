@@ -32,6 +32,6 @@ public class GestionOperationImpl implements GestionOperation {
 			message = "Il y a " + listeOperation.size() + " opération";
 		bundle.put(Bundle.OPERATION_REUSSIE, listeOk);
 		bundle.put(Bundle.MESSAGE, message);
-		bundle.put(Bundle.LISTE, operationDao);
+		bundle.put(Bundle.LISTE, listeOperation);
 	}
 }

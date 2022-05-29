@@ -37,7 +37,7 @@ public class ControleurListeOperation implements Initializable {
 		tvObservableList.addAll(listeOperation);
 		colNumero.setCellValueFactory(new PropertyValueFactory<Operation, String>("numero"));
 		colSolde.setCellValueFactory(new PropertyValueFactory<Operation, String>("solde"));
-		colBeneficiaire.setCellValueFactory(new PropertyValueFactory<Operation, String>("beneficiare"));
+		colBeneficiaire.setCellValueFactory(new PropertyValueFactory<Operation, String>("autreCompte"));
 		this.tableView.setItems(tvObservableList);
 	}
 }
