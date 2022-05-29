@@ -34,4 +34,27 @@ public class GestionOperationImpl implements GestionOperation {
 		bundle.put(Bundle.MESSAGE, message);
 		bundle.put(Bundle.LISTE, listeOperation);
 	}
+	
+	public void ajouterOperation(Bundle bundle) {
+		boolean ajoutReussi = false;
+		String message = "";
+		Operation operation = (Operation) bundle.get(Bundle.OPERATION);
+		if (operation.getAutreCompte() == 0) {
+			message = "L'ajout n'a pas pu etre realise. Il manque le numero de l'autre compte";
+		} else if (operation.getMontant() < 0) {
+			message = "L'ajout n'a pas pu etre realise. Le montant est négatif";
+		} else if (operation.getType() <= 0 || operation.getType() > 6) {
+			message = "L'ajout n'a pas pu etre realise. Le type d'operation n'existe pas";
+			} else {
+				ajoutReussi = this.operationDao.ajouterOperation(operation);
+				if (ajoutReussi) {
+					message = "Le virement e bien ete effectue";
+				} else {
+					message = "Le virement n'a pas pu etre effectue";
+				}
+			}
+		bundle.put(Bundle.OPERATION_REUSSIE, ajoutReussi);
+		bundle.put(Bundle.OPERATION, operation);
+		bundle.put(Bundle.MESSAGE, message);
+	}
 }
