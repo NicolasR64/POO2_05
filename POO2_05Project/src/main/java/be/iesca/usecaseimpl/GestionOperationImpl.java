@@ -48,7 +48,7 @@ public class GestionOperationImpl implements GestionOperation {
 			} else {
 				ajoutReussi = this.operationDao.ajouterOperation(operation);
 				if (ajoutReussi) {
-					message = "Le virement e bien ete effectue";
+					message = "Le virement a bien ete effectue";
 				} else {
 					message = "Le virement n'a pas pu etre effectue";
 				}
